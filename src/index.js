@@ -2,9 +2,10 @@ const express = require("express");
 const userRouter = require("./routes/userRouts");
 const app = express();
 const mongoose = require("mongoose");
+const noteRouter = require("./routes/notesRouts");
 mongoose.connect("mongodb+srv://vikram8575229:JnQPq1c1TI8s48sy@notes.yi5izwk.mongodb.net/")
 .then(() => {
-    app.listen(3000, ()=>{
+    app.listen(3000,'0.0.0.0', ()=>{
         console.log("server started");
     }
 );
@@ -15,6 +16,7 @@ mongoose.connect("mongodb+srv://vikram8575229:JnQPq1c1TI8s48sy@notes.yi5izwk.mon
   });
 app.use(express.json());
 app.use("/users", userRouter);
+app.use("/notes",  noteRouter);
 
 app.get("/",(req , res)=>{
     res.send("hello");
